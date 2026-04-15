@@ -1,5 +1,4 @@
 package com.pdm0126.taller1_00014624
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,7 +19,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// ---------------- APP PRINCIPAL ----------------
+// --------- APP PRINCIPAL ------
 @Composable
 fun AndroidPediaApp() {
     var started by remember { mutableStateOf(false) }
@@ -66,13 +65,17 @@ fun AndroidPediaApp() {
                 started = true
             },
             onGoHome = {
+                currentIndex = 0
+                score = 0
+                selectedOption = null
+                answered = false
                 started = false
             }
         )
     }
 }
 
-// ---------------- PANTALLA BIENVENIDA ----------------
+// ------------- PANTALLA BIENVENIDA -------
 @Composable
 fun WelcomeScreen(onStart: () -> Unit) {
     Column(
@@ -102,7 +105,13 @@ fun QuestionScreen(
     onOptionSelected: (String) -> Unit,
     onNext: () -> Unit
 ) {
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
 
         Text("Pregunta ${index + 1} de 3")
         Text("Puntaje: $score / 3")
@@ -125,38 +134,34 @@ fun QuestionScreen(
                     Color(0xFF6200EE)
                 } else {
                     when (option) {
-
                         selectedOption -> {
                             if (selectedOption == question.correctAnswer) {
-                                Color(0xFF4CAF50) // verde
+                                Color(0xFF4CAF50)
                             } else {
-                                Color(0xFFF44336) // rojo
+                                Color(0xFFF44336)
                             }
                         }
                         question.correctAnswer -> Color(0xFF4CAF50)
-
                         else -> Color.White
                     }
                 }
 
-                val contentColor = when (containerColor) {
-                    Color(0xFFE0E0E0) -> Color.Black
-                    else -> Color.White
-                }
-                key(option, selectedOption, answered) {
-                    Button(
-                        onClick = { onOptionSelected(option) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = containerColor,
-                            contentColor = Color.Black
-                        ),
-                        enabled = !answered
-                    ) {
-                        Text(option)
-                    }
+                Button(
+                    onClick = { onOptionSelected(option) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = containerColor,
+                        disabledContainerColor = containerColor,
+                        disabledContentColor = if (containerColor == Color.White) Color.Black else Color.White
+                    ),
+                    enabled = !answered
+                ) {
+                    Text(
+                        text = option,
+                        color = if (containerColor == Color.White) Color.Black else Color.White
+                    )
                 }
             }
         }
@@ -173,7 +178,7 @@ fun QuestionScreen(
     }
 }
 
-// ---------------- RESULTADO FINAL ----------------
+// ------ RESULTADO FINAL -----------
 @Composable
 fun ResultScreen(
     score: Int,

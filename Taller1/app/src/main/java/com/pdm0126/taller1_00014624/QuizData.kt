@@ -3,38 +3,38 @@ package com.pdm0126.taller1_00014624
 val quizQuestions = listOf(
     Question(
         id = 1,
-        question = "¿Cuál fue el primer dispositivo Android en venderse comercialmente?",
+        question = "¿Qué empresa desarrolló el sistema operativo Android?",
         options = listOf(
-            "HTC Dream (T-Mobile G1)",
-            "Motorola Droid",
-            "Samsung Galaxy S",
-            "Nexus One"
+            "Apple",
+            "Google",
+            "Microsoft",
+            "Samsung"
         ),
-        correctAnswer = "HTC Dream (T-Mobile G1)",
-        funFact = "Fue lanzado en 2008 con teclado físico deslizante."
+        correctAnswer = "Google",
+        funFact = "Android fue creado inicialmente por Android Inc., pero Google lo compró en 2005."
     ),
     Question(
         id = 2,
-        question = "¿A partir de qué versión Google dejó de usar nombres de postre?",
+        question = "¿Cómo se llamaban las versiones antiguas de Android?",
         options = listOf(
-            "Android 9 Pie",
-            "Android 10",
-            "Android 11",
-            "Android 8 Oreo"
+            "Con números solamente",
+            "Con nombres de postres",
+            "Con nombres de ciudades",
+            "Con letras sin significado"
         ),
-        correctAnswer = "Android 10",
-        funFact = "Google cambió a números para facilitar la pronunciación global."
+        correctAnswer = "Con nombres de postres",
+        funFact = "Ejemplos incluyen Cupcake, Donut, KitKat y Oreo."
     ),
     Question(
         id = 3,
-        question = "¿Qué versión introdujo el modo oscuro nativo?",
+        question = "¿Qué característica permitió instalar aplicaciones desde una tienda oficial?",
         options = listOf(
-            "Android 9 Pie",
-            "Android 8 Oreo",
-            "Android 10",
-            "Android 7 Nougat"
+            "Google Maps",
+            "Play Store",
+            "Bluetooth",
+            "Cámara"
         ),
-        correctAnswer = "Android 10",
-        funFact = "Antes de Android 10, los fabricantes lo hacían por su cuenta."
+        correctAnswer = "Play Store",
+        funFact = "La Play Store es la tienda oficial donde los usuarios descargan apps en Android."
     )
 )
