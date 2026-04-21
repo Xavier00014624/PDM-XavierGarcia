@@ -75,7 +75,7 @@ fun AndroidPediaApp() {
     }
 }
 
-// ------------- PANTALLA BIENVENIDA -------
+// ------------- PANTALLA BIENVENIDA ------- Prueba de CodeReview
 @Composable
 fun WelcomeScreen(onStart: () -> Unit) {
     Column(
