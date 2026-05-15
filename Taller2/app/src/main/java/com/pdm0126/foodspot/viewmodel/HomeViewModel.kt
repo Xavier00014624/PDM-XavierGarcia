@@ -23,7 +23,7 @@ class HomeViewModel : ViewModel() {
 
     private fun loadRestaurants() {
         val restaurants = repository.getRestaurants()
-        
+
         val grouped = restaurants
             .flatMap { restaurant ->
                 restaurant.categories.map { category ->
