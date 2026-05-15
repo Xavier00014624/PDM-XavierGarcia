@@ -1,6 +1,5 @@
 package com.pdm0126.foodspot.screens.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,21 +12,26 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.pdm0126.foodspot.model.Restaurant
 import com.pdm0126.foodspot.viewmodel.HomeViewModel
+import com.pdm0126.foodspot.viewmodel.CartViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.material3.ExperimentalMaterial3Api
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = HomeViewModel(),
+    cartViewModel: CartViewModel,
     onRestaurantClick: (Int) -> Unit,
     onSearchClick: () -> Unit
 ) {
+    val viewModel: HomeViewModel = viewModel()
 
+    val cartItems by cartViewModel.cartItems.collectAsState()
     val categories by viewModel.restaurantsByCategory.collectAsState()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("FoodSpot") },
+                title = { Text("FoodSpot (${cartItems.size})") },
                 actions = {
                     IconButton(onClick = onSearchClick) {
                         Text("🔍")

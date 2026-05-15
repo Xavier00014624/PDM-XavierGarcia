@@ -12,13 +12,15 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pdm0126.foodspot.viewmodel.DetailViewModel
+import com.pdm0126.foodspot.viewmodel.CartViewModel
 import androidx.compose.material3.ExperimentalMaterial3Api
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
     restaurantId: Int,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    cartViewModel: CartViewModel
 ) {
 
     val viewModel: DetailViewModel = viewModel()
@@ -76,6 +78,8 @@ fun DetailScreen(
 
                         Button(
                             onClick = {
+                                cartViewModel.addToCart(dish)
+
                                 Toast.makeText(
                                     context,
                                     "${dish.name} agregado al carrito",
