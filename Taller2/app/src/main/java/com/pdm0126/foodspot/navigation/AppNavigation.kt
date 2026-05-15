@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.*
 import androidx.navigation.compose.rememberNavController
 import com.pdm0126.foodspot.screens.home.HomeScreen
+import com.pdm0126.foodspot.screens.detail.DetailScreen
+import com.pdm0126.foodspot.screens.search.SearchScreen
 
 @Composable
 fun AppNavigation() {
@@ -29,13 +31,21 @@ fun AppNavigation() {
         composable("detail/{id}") { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id")?.toIntOrNull()
 
-            // TEMPORAL (luego creamos pantalla real)
-            androidx.compose.material3.Text("Detalle restaurante ID: $id")
+            id?.let {
+                DetailScreen(
+                    restaurantId = it,
+                    onBack = { navController.popBackStack() }
+                )
+            }
         }
 
         composable("search") {
-            // TEMPORAL
-            androidx.compose.material3.Text("Pantalla de búsqueda")
+            SearchScreen(
+                onBack = { navController.popBackStack() },
+                onRestaurantClick = { id ->
+                    navController.navigate("detail/$id")
+                }
+            )
         }
     }
 }
